@@ -37,7 +37,11 @@
       position: fixed;
       inset: 0;
       z-index: -2;
-      background: radial-gradient(ellipse at 50% -15%, #4a2b45 0%, transparent 52%), var(--ink);
+      background:
+        radial-gradient(ellipse at 12% 0%, rgb(255 180 207 / 22%) 0%, transparent 30%),
+        radial-gradient(ellipse at 92% 12%, rgb(183 157 218 / 19%) 0%, transparent 34%),
+        radial-gradient(ellipse at 55% 105%, rgb(171 92 128 / 18%) 0%, transparent 42%),
+        var(--ink);
       content: "";
     }
 
@@ -57,7 +61,7 @@
       position: sticky;
       top: 0;
       z-index: 10;
-      border-bottom: 1px solid rgba(255,255,255,.1);
+      border-bottom: 1px solid rgb(255 194 216 / 14%);
       background: color-mix(in srgb, var(--ink) 82%, transparent);
       backdrop-filter: blur(22px);
     }
@@ -67,7 +71,8 @@
     .nav-links { display: flex; gap: 30px; color: var(--soft-white); font-size: 13px; }
     .nav-links a { transition: color .25s ease; }
     .nav-links a:hover { color: var(--blue); }
-    .theme-toggle { display: inline-flex; width: 34px; height: 34px; align-items: center; justify-content: center; margin-left: 22px; border: 1px solid var(--line); border-radius: 50%; color: var(--soft-white); background: transparent; cursor: pointer; font-size: 16px; }
+    .theme-toggle { display: inline-flex; width: 34px; height: 34px; align-items: center; justify-content: center; margin-left: 22px; border: 1px solid rgb(255 194 216 / 30%); border-radius: 50%; color: var(--soft-white); background: rgb(255 194 216 / 6%); cursor: pointer; font-size: 16px; transition: border-color .25s ease, background .25s ease, transform .25s ease; }
+    .theme-toggle:hover { border-color: var(--red); background: rgb(255 194 216 / 14%); transform: rotate(12deg); }
 
     .hero { position: relative; isolation: isolate; min-height: min(820px, calc(100vh - 72px)); display: flex; flex-direction: column; justify-content: center; padding: 100px 0 130px; overflow: hidden; }
     .hero::before { position: absolute; inset: 0; z-index: -1; background: url("hero-bg.png") center / cover no-repeat; opacity: .9; filter: saturate(.88) brightness(.98) contrast(.96); content: ""; }
@@ -93,7 +98,7 @@
     .section-intro > p { max-width: 410px; margin: 0 0 3px auto; color: var(--soft-white); font-size: 16px; line-height: 1.6; }
 
     .about-grid { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(280px, .7fr); gap: 14px; }
-    .panel { border: 1px solid var(--line); border-radius: 28px; background: linear-gradient(145deg, rgba(255,231,240,.12), rgba(255,255,255,.035)); }
+    .panel { border: 1px solid var(--line); border-radius: 28px; background: linear-gradient(145deg, rgba(255,231,240,.14), rgba(255,255,255,.035)); box-shadow: 0 22px 70px rgb(38 12 30 / 12%); }
     .about-main { min-height: 300px; padding: clamp(26px, 5vw, 54px); }
     .about-main p { max-width: 720px; margin-bottom: 0; color: var(--soft-white); font-size: clamp(1.05rem, 1.65vw, 1.35rem); line-height: 1.62; letter-spacing: -.012em; }
     .focus { padding: 28px; }
@@ -130,7 +135,7 @@
     .projects { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
     .project { min-height: 330px; display: flex; flex-direction: column; justify-content: space-between; padding: 24px; overflow: hidden; transition: transform .3s ease, border-color .3s ease; }
     .project:hover { border-color: rgb(255 62 77 / 70%); transform: translateY(-6px); }
-    .project-featured { background: radial-gradient(circle at 80% 20%, rgb(223 126 157 / 28%), transparent 30%), linear-gradient(145deg, rgb(78 52 86 / 45%), rgba(255,255,255,.04)); }
+    .project-featured { background: radial-gradient(circle at 80% 20%, rgb(255 174 203 / 34%), transparent 30%), linear-gradient(145deg, rgb(111 61 93 / 52%), rgba(255,255,255,.04)); }
     .project-top, .project-bottom { display: flex; align-items: center; justify-content: space-between; }
     .project-tag, .project-year { color: var(--soft-white); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; }
     .project h3 { margin: 0; font-size: clamp(1.7rem, 3vw, 2.5rem); font-weight: 500; letter-spacing: -.06em; }
