@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#084090b" />
+  <meta name="description" content="Wayne's personal project hub — engineering, games, space, math, and code." />
+  <title>Wayne's Project Hub</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --white: #f5f5f2;
+      --soft-white: #f1eee8;
+      --muted: #aaa49e;
+      --ink: #08090b;
+      --panel: rgba(255, 255, 255, .07);
+      --line: rgba(255, 255, 255, .14);
+      --gold: #d7b36a;
+      --purple: #868055;
+      --max: 1240px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 320px;
+      overflow-x: hidden;
+      background: var(--ink);
+      color: var(--white);
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body::before {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background: radial-gradient(ellipse at 50% -15%, #302343 0%, transparent 52%), #08090b;
+      content: "";
+    }
+
+    body::after {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      opacity: .04;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.4'/%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    .wrap { width: min(var(--max), calc(100% - 64px)); margin: auto; }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+      background: rgba(8, 9, 11, .72);
+      backdrop-filter: blur(22px);
+    }
+    .nav-inner { display: flex; height: 72px; align-items: center; justify-content: space-between; }
+    .brand { display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 650; letter-spacing: .13em; text-transform: uppercase; }
+    .brand-mark { width: 9px; height: 9px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 20px var(--gold); }
+    .nav-links { display: flex; gap: 30px; color: var(--soft-white); font-size: 13px; }
+    .nav-links a { transition: color .25s ease; }
+    .nav-links a:hover { color: var(--gold); }
+
+    .hero { position: relative; isolation: isolate; min-height: min(820px, calc(100vh - 72px)); display: flex; flex-direction: column; justify-content: center; padding: 100px 0 130px; overflow: hidden; }
+    .hero::before { position: absolute; inset: 0; z-index: -1; background: url("hero-bg.png") center / cover no-repeat; opacity: .9; filter: saturate(.88) brightness(.98) contrast(.96); content: ""; }
+    .hero::after { position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(8,10,15,.55) 0%, rgba(8,10,15,.2) 44%, rgba(8,10,15,.04) 100%), linear-gradient(180deg, transparent 72%, rgba(8,10,15,.48) 100%); content: ""; }
+    .kicker { margin: 0 0 24px; color: var(--gold); font-size: 12px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { max-width: 850px; margin-bottom: 30px; font-size: clamp(3.5rem, 7.8vw, 6.8rem); font-weight: 600; letter-spacing: -.075em; line-height: .9; }
+    h1 span { display: block; color: transparent; background: linear-gradient(110deg, #fff 12%, var(--purple) 85%); -webkit-background-clip: text; background-clip: text; }
+    .hero-copy { max-width: 580px; color: var(--soft-white); font-size: clamp(1.1rem, 2vw, 1.35rem); line-height: 1.55; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
+    .button { display: inline-flex; min-height: 48px; align-items: center; justify-content: center; padding: 0 21px; border: 1px solid var(--line); border-radius: 999px; background: rgba(255,255,255,.08); font-size: 13px; font-weight: 650; transition: background .25s ease, border-color .25s ease, transform .25s ease; }
+    .button:hover { border-color: rgba(215,179,106,.65); background: rgba(215,179,106,.14); transform: translateY(-2px); }
+    .button.primary { border-color: transparent; background: var(--white); color: #111216; }
+    .button.primary:hover { background: #ead4a3; }
+
+    .section { padding: 108px 0; border-top: 1px solid var(--line); }
+    .section-intro { display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(280px, .92fr); gap: 72px; align-items: end; margin-bottom: 44px; }
+    .label { margin: 0 0 16px; color: var(--gold); font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
+    h2 { max-width: 600px; margin-bottom: 0; font-size: clamp(2.4rem, 5vw, 4.8rem); font-weight: 550; letter-spacing: -.07em; line-height: .98; }
+    .section-intro > p { max-width: 410px; margin: 0 0 3px auto; color: var(--soft-white); font-size: 16px; line-height: 1.6; }
+
+    .about-grid { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(280px, .7fr); gap: 14px; }
+    .panel { border: 1px solid var(--line); border-radius: 20px; background: linear-gradient(145deg, rgba(255,255,255,.1), rgba(255,255,255,.035)); }
+    .about-main { min-height: 300px; padding: clamp(26px, 5vw, 54px); }
+    .about-main p { max-width: 720px; margin-bottom: 0; color: var(--soft-white); font-size: clamp(1.05rem, 1.65vw, 1.35rem); line-height: 1.62; letter-spacing: -.012em; }
+    .focus { padding: 28px; }
+    .focus h3 { margin-bottom: 34px; font-size: 17px; font-weight: 500; }
+    .focus-list { display: grid; gap: 15px; }
+    .focus-item { display: flex; align-items: center; gap: 10px; color: var(--soft-white); font-size: 13px; }
+    .focus-item::before { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 10px rgba(215,179,106,.75); content: ""; }
+
+    .interest-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+    .interest { min-height: 220px; padding: 24px; transition: transform .25s ease, border-color .25s ease; }
+    .interest:hover { border-color: rgba(166,139,232,.65); transform: translateY(-5px); }
+    .interest-icon { display: block; margin-bottom: 55px; color: var(--purple); font-size: 23px; }
+    .interest h3 { min-height: 44px; margin-bottom: 8px; font-size: 18px; font-weight: 500; line-height: 1.2; }
+    .interest p { margin-bottom: 0; color: var(--muted); font-size: 13px; line-height: 1.4; }
+
+    .principles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+    .principle { min-height: 250px; padding: 26px; }
+    .principle-number { display: block; margin-bottom: 74px; color: var(--gold); font-size: 12px; letter-spacing: .14em; }
+    .principle h3 { margin-bottom: 12px; font-size: 20px; font-weight: 500; letter-spacing: -.03em; }
+    .principle p { max-width: 260px; margin: 0; color: var(--muted); font-size: 13px; line-height: 1.5; }
+
+    .learning { display: grid; grid-template-columns: minmax(280px, .75fr) minmax(0, 1.25fr); gap: 14px; }
+    .learning-note { min-height: 320px; padding: clamp(26px, 5vw, 46px); background: radial-gradient(circle at 80% 10%, rgba(166,139,232,.24), transparent 35%), linear-gradient(145deg, rgba(255,255,255,.1), rgba(255,255,255,.035)); }
+    .learning-note h3 { max-width: 300px; margin: 0; font-size: clamp(1.7rem, 3vw, 2.6rem); font-weight: 500; letter-spacing: -.06em; line-height: 1.05; }
+    .learning-note p { max-width: 300px; margin: 28px 0 0; color: var(--soft-white); font-size: 14px; line-height: 1.55; }
+    .roadmap { display: flex; flex-direction: column; padding: 28px; }
+    .roadmap-row { display: grid; flex: 1; grid-template-columns: 92px minmax(0, 1fr); gap: 20px; align-content: start; padding: 19px 0; border-bottom: 1px solid var(--line); }
+    .roadmap-row:first-child { padding-top: 0; }
+    .roadmap-row:last-child { padding-bottom: 0; border-bottom: 0; }
+    .roadmap-label { color: var(--gold); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; }
+    .roadmap-row h3 { margin: 0 0 7px; font-size: 17px; font-weight: 500; line-height: 1.2; }
+    .roadmap-row p { max-width: 430px; margin: 0; color: var(--muted); font-size: 13px; line-height: 1.45; }
+
+    .projects { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .project { min-height: 330px; display: flex; flex-direction: column; justify-content: space-between; padding: 24px; overflow: hidden; transition: transform .3s ease, border-color .3s ease; }
+    .project:hover { border-color: rgba(215,179,106,.7); transform: translateY(-6px); }
+    .project-featured { background: radial-gradient(circle at 80% 20%, rgba(166,139,232,.3), transparent 30%), linear-gradient(145deg, rgba(80,54,111,.45), rgba(255,255,255,.04)); }
+    .project-top, .project-bottom { display: flex; align-items: center; justify-content: space-between; }
+    .project-tag, .project-year { color: var(--soft-white); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; }
+    .project h3 { margin: 0; font-size: clamp(1.7rem, 3vw, 2.5rem); font-weight: 500; letter-spacing: -.06em; }
+    .project-bottom { color: var(--muted); font-size: 12px; }
+    .project-arrow { color: var(--gold); font-size: 22px; }
+
+    .numbers { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .number { padding: 33px 24px; border-right: 1px solid var(--line); }
+    .number:last-child { border-right: 0; }
+    .number strong { display: block; margin-bottom: 10px; font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 500; letter-spacing: -.08em; }
+    .number span { color: var(--muted); font-size: 11px; letter-spacing: .13em; text-transform: uppercase; }
+
+    .footer { padding: 104px 0 36px; }
+    .footer-top { display: flex; justify-content: space-between; align-items: end; gap: 40px; margin-bottom: 70px; }
+    .footer h2 { max-width: 700px; }
+    .socials { display: flex; flex-wrap: wrap; gap: 9px; justify-content: end; }
+    .social { padding: 12px 15px; border: 1px solid var(--line); border-radius: 100px; color: var(--soft-white); font-size: 12px; transition: color .2s ease, border-color .2s ease, background .2s ease; }
+    .social:hover { border-color: var(--purple); background: rgba(166,139,232,.13); color: #fff; }
+    .footer-bottom { display: flex; justify-content: space-between; padding-top: 22px; border-top: 1px solid var(--line); color: var(--muted); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
+
+    @media (max-width: 800px) {
+      .wrap { width: min(100% - 36px, 620px); }
+      .nav-inner { height: 62px; }
+      .nav-links { gap: 14px; font-size: 11px; }
+      .date { display: none; }
+      .hero { min-height: auto; padding: 100px 0 110px; }
+      .section { padding: 80px 0; }
+      .section-intro, .about-grid { grid-template-columns: 1fr; gap: 24px; }
+      .section-intro > p { margin: 0; }
+      .interest-grid { grid-template-columns: repeat(2, 1fr); }
+      .principles, .learning { grid-template-columns: 1fr; }
+      .projects { grid-template-columns: 1fr; }
+      .project { min-height: 270px; }
+      .footer-top { display: block; margin-bottom: 48px; }
+      .socials { justify-content: start; margin-top: 30px; }
+    }
+
+    @media (max-width: 450px) {
+      .wrap { width: calc(100% - 28px); }
+      .nav-links a:nth-child(3) { display: none; }
+      h1 { font-size: clamp(3.4rem, 16vw, 5rem); }
+      .interest-grid { grid-template-columns: 1fr; }
+      .interest-icon { margin-bottom: 28px; }
+      .numbers { grid-template-columns: 1fr; }
+      .number { border-right: 0; border-bottom: 1px solid var(--line); }
+      .number:last-child { border-bottom: 0; }
+      .footer-bottom { display: block; line-height: 2; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav" aria-label="Main navigation">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#top"><span class="brand-mark"></span> Wayne / 01</a>
+      <div class="nav-links">
+        <a href="#about">About me</a>
+        <a href="#interests">Interests</a>
+        <a href="#projects">Projects</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="top">
+    <section class="wrap hero">
+      <p class="kicker">Engineer · Creator · Enthusiast</p>
+      <h1>Ideas made<br><span>real.</span></h1>
+      <p class="hero-copy">Welcome to Wayne's Project Hub — a home for the things I build, the problems I solve, and the worlds I get curious about.</p>
+      <div class="hero-actions">
+        <a class="button primary" href="#projects">Explore my work <span aria-hidden="true">&nbsp;↗</span></a>
+        <a class="button" href="#about">A little about me</a>
+      </div>
+    </section>
+
+    <section class="wrap section" id="about">
+      <div class="section-intro">
+        <div><p class="label">01 / About me</p><h2>Curious by nature.<br>Builder by choice.</h2></div>
+        <p>I’m curious about how the world works—and even more interested in what I can build from that curiosity. Engineering, code, game design, space, and math give me different ways to ask better questions, solve challenging problems, and turn ideas into something people can actually experience.</p>
+      </div>
+      <div class="about-grid">
+        <div class="panel about-main"><p>Some days I’m focused on solving a challenging problem. Other days I’m exploring the universe, studying game design, or turning a new idea into something real. I enjoy understanding how things work, experimenting with different approaches, and improving each project as I learn. Whether I’m writing code, working through a math problem, or building a game, I’m always looking for the next idea worth exploring.</p></div>
+        <div class="panel focus"><h3>What I'm focused on</h3><div class="focus-list"><span class="focus-item">Writing clean code</span><span class="focus-item">Solving hard problems</span><span class="focus-item">Building useful things</span><span class="focus-item">Learning something new</span></div></div>
+      </div>
+    </section>
+
+    <section class="wrap section" id="interests">
+      <div class="section-intro">
+        <div><p class="label">02 / The good stuff</p><h2>Things that<br>keep me going.</h2></div>
+        <p>The subjects that shape how I think, what I build, and the questions I want to explore next.</p>
+      </div>
+      <div class="interest-grid">
+        <article class="panel interest"><span class="interest-icon">⌬</span><h3>Engineering &amp; design</h3><p>Learning how systems work and turning ideas into useful things.</p></article>
+        <article class="panel interest"><span class="interest-icon">◈</span><h3>Games &amp; play</h3><p>Exploring game design through Call of Duty, Roblox, and my own projects.</p></article>
+        <article class="panel interest"><span class="interest-icon">✦</span><h3>Space science</h3><p>Following the technology, missions, and big questions beyond Earth.</p></article>
+        <article class="panel interest"><span class="interest-icon">∑</span><h3>Math &amp; logic</h3><p>Using patterns and problem-solving to understand how things fit together.</p></article>
+      </div>
+    </section>
+
+    <section class="wrap section" id="approach">
+      <div class="section-intro">
+        <div><p class="label">03 / How I build</p><h2>Learn deeply.<br>Build thoughtfully.</h2></div>
+        <p>I’m still early in my journey, but I care about doing things properly: understanding the problem, testing ideas, and improving the result one step at a time.</p>
+      </div>
+      <div class="principles">
+        <article class="panel principle"><span class="principle-number">01 / DISCOVER</span><h3>Start with a question</h3><p>Every project begins with curiosity and a clear idea of what I want to understand or create.</p></article>
+        <article class="panel principle"><span class="principle-number">02 / BUILD</span><h3>Turn ideas into experiments</h3><p>I learn by making, testing, and finding practical ways to move from a concept to a working result.</p></article>
+        <article class="panel principle"><span class="principle-number">03 / IMPROVE</span><h3>Keep raising the standard</h3><p>Good work gets better through feedback, patience, and the willingness to try again.</p></article>
+      </div>
+    </section>
+
+    <section class="wrap section" id="learning">
+      <div class="section-intro">
+        <div><p class="label">04 / In the lab</p><h2>Always something<br>new to explore.</h2></div>
+        <p>The best part of building is that there is always another skill, tool, or idea waiting to be discovered.</p>
+      </div>
+      <div class="learning">
+        <div class="panel learning-note"><h3>My curiosity has no finish line.</h3><p>From code and game development to mathematics and space science, I’m building a foundation for bigger ideas.</p></div>
+        <div class="panel roadmap">
+          <div class="roadmap-row"><span class="roadmap-label">Focus 01</span><div><h3>Programming</h3><p>Writing clearer code and learning how software becomes useful experiences.</p></div></div>
+          <div class="roadmap-row"><span class="roadmap-label">Focus 02</span><div><h3>Game development</h3><p>Understanding the systems, design choices, and creativity behind interactive worlds.</p></div></div>
+          <div class="roadmap-row"><span class="roadmap-label">Focus 03</span><div><h3>Problem solving</h3><p>Using logic, math, and persistence to approach challenges from new angles.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap section" id="projects">
+      <div class="section-intro">
+        <div><p class="label">05 / Projects</p><h2>Work in progress<br>is still work.</h2></div>
+        <p>This is where ideas become experiments. Some are polished, some are playful, and all of them teach me something.</p>
+      </div>
+      <div class="projects">
+        <a class="panel project project-featured" href="http://127.0.0.1:8765/dinogame_v2/dino-pixel-runner.html" target="_blank" rel="noopener noreferrer" aria-label="Open Dino Runner project in a new tab"><div class="project-top"><span class="project-tag">Game / 01</span><span class="project-year">2026</span></div><h3>Dino<br>Runner</h3><div class="project-bottom"><span>Open game</span><span class="project-arrow">↗</span></div></a>
+        <div class="panel project"><div class="project-top"><span class="project-tag">Experiment / 02</span><span class="project-year">Soon</span></div><h3>Something<br>new soon</h3><div class="project-bottom"><span>Reserved</span><span class="project-arrow">＋</span></div></div>
+        <div class="panel project"><div class="project-top"><span class="project-tag">Idea / 03</span><span class="project-year">Soon</span></div><h3>Room for<br>an idea</h3><div class="project-bottom"><span>Reserved</span><span class="project-arrow">＋</span></div></div>
+      </div>
+    </section>
+
+    <section class="wrap section" aria-label="Wayne by the numbers">
+      <div class="numbers"><div class="number"><strong>∞</strong><span>Curiosity to spare</span></div><div class="number"><strong>24/7</strong><span>Ideas in rotation</span></div><div class="number"><strong>1</strong><span>Project hub</span></div></div>
+    </section>
+  </main>
+
+  <footer class="wrap footer" id="contact">
+    <div class="footer-top"><div><p class="label">06 / Say hello</p><h2>Let's make something<br>great together.</h2></div><div class="socials"><a class="social" href="https://www.youtube.com/channel/TFLK5gTh-zAj9QoO-7wDOg" target="_blank" rel="noreferrer">YouTube</a><a class="social" href="https://github.com/wayneestrefi" target="_blank" rel="noreferrer">GitHub</a><a class="social" href="mailto:wayneestrefi2@gmail.com">Email me</a><a class="social" href="tel:+14374512903">Phone</a></div></div>
+    <div class="footer-bottom"><span>© Wayne's Project Hub</span><span>Built with code & curiosity</span></div>
+  </footer>
+</body>
+</html>
