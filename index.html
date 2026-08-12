@@ -74,25 +74,6 @@
     .hero::after { position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(8,10,15,.55) 0%, rgba(8,10,15,.2) 44%, rgba(8,10,15,.04) 100%), linear-gradient(180deg, transparent 72%, rgba(8,10,15,.48) 100%); content: ""; }
     [data-theme="light"] .hero::before { opacity: .16; filter: saturate(.4) brightness(1.35) contrast(.8); }
     [data-theme="light"] .hero::after { background: linear-gradient(90deg, rgb(238 242 247 / 82%), rgb(238 242 247 / 42%) 52%, rgb(238 242 247 / 18%)), linear-gradient(180deg, transparent 72%, rgb(238 242 247 / 58%) 100%); }
-    .section { position: relative; }
-    .section > :not(.about-tech):not(.learning-tech) { position: relative; z-index: 1; }
-    .about-tech { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
-    .learning-tech { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
-    .equation { position: absolute; top: var(--eq-y); left: var(--eq-x); color: var(--eq-color, rgb(164 201 255 / 76%)); font-family: Georgia, "Times New Roman", serif; font-style: italic; font-size: var(--eq-size); letter-spacing: .02em; opacity: var(--eq-opacity, .72); text-shadow: 0 0 18px var(--eq-glow, rgb(76 157 255 / 30%)); white-space: nowrap; animation: equation-drift 12s ease-in-out infinite alternate; animation-delay: var(--eq-delay); }
-    .equation::after { position: absolute; right: -12px; bottom: -7px; left: -10px; height: 1px; background: linear-gradient(90deg, transparent, rgb(76 157 255 / 45%), transparent); content: ""; }
-    .eq-2, .eq-5 { color: rgb(255 178 190 / 74%); }
-    .eq-4, .eq-7 { color: rgb(255 210 171 / 70%); }
-    .eq-6, .eq-8 { color: rgb(210 189 255 / 72%); }
-    .hud-ring { position: absolute; top: 54%; right: 1%; width: clamp(150px, 20vw, 270px); aspect-ratio: 1; border: 1px solid rgb(76 157 255 / 48%); border-radius: 50%; box-shadow: 0 0 0 18px rgb(76 157 255 / 6%), 0 0 0 42px rgb(76 157 255 / 3%), inset 0 0 40px rgb(76 157 255 / 8%); animation: hud-pulse 7s ease-in-out infinite; }
-    .hud-ring::before, .hud-ring::after { position: absolute; inset: 12%; border: 1px solid rgb(255 255 255 / 17%); border-radius: 50%; content: ""; }
-    .hud-ring::after { inset: -15%; border-color: transparent rgb(255 92 105 / 48%) transparent transparent; transform: rotate(32deg); }
-    .hud-crosshair { position: absolute; top: 50%; left: -16%; width: 132%; height: 1px; background: linear-gradient(90deg, transparent, rgb(76 157 255 / 48%) 22%, rgb(76 157 255 / 48%) 78%, transparent); }
-    .hud-crosshair::after { position: absolute; top: -65px; left: 50%; width: 1px; height: 130px; background: linear-gradient(transparent, rgb(76 157 255 / 40%) 25%, rgb(76 157 255 / 40%) 75%, transparent); content: ""; }
-    .scan-line { position: absolute; top: 5%; left: 82%; width: 1px; height: 90%; background: linear-gradient(transparent, rgb(76 157 255 / 16%), transparent); transform: rotate(23deg); transform-origin: center; animation: scan 9s ease-in-out infinite; }
-    @keyframes equation-drift { from { transform: translate3d(-5px, 4px, 0) rotate(var(--eq-tilt, -2deg)); } to { transform: translate3d(8px, -8px, 0) rotate(calc(var(--eq-tilt, 2deg) * -1)); } }
-    @keyframes hud-pulse { 50% { transform: scale(1.04) rotate(5deg); opacity: .76; } }
-    @keyframes scan { 50% { transform: rotate(23deg) translateX(90px); opacity: .9; } }
-    [data-theme="light"] .about-tech, [data-theme="light"] .learning-tech { opacity: .36; }
     .kicker { margin: 0 0 24px; color: var(--red); font-size: 12px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; }
     h1, h2, h3, p { margin-top: 0; }
     h1 { max-width: 850px; margin-bottom: 30px; font-size: clamp(3.5rem, 7.8vw, 6.8rem); font-weight: 600; letter-spacing: -.075em; line-height: .9; }
@@ -134,7 +115,6 @@
     .principle p { max-width: 260px; margin: 0; color: var(--muted); font-size: 13px; line-height: 1.5; }
 
     .learning { display: grid; grid-template-columns: minmax(280px, .75fr) minmax(0, 1.25fr); gap: 14px; }
-    #learning { min-height: 980px; }
     .learning-note { min-height: 320px; padding: clamp(26px, 5vw, 46px); background: radial-gradient(circle at 80% 10%, rgb(76 157 255 / 24%), transparent 35%), linear-gradient(145deg, rgba(255,255,255,.1), rgba(255,255,255,.035)); }
     .learning-note h3 { max-width: 300px; margin: 0; font-size: clamp(1.7rem, 3vw, 2.6rem); font-weight: 500; letter-spacing: -.06em; line-height: 1.05; }
     .learning-note p { max-width: 300px; margin: 28px 0 0; color: var(--soft-white); font-size: 14px; line-height: 1.55; }
@@ -176,8 +156,6 @@
       .nav-links { gap: 14px; font-size: 11px; }
       .date { display: none; }
       .hero { min-height: auto; padding: 100px 0 110px; }
-      .hud-ring { right: -30%; top: 58%; }
-      .equation { opacity: .7; }
       .section { padding: 80px 0; }
       .section-intro, .about-grid { grid-template-columns: 1fr; gap: 24px; }
       .section-intro > p { margin: 0; }
@@ -193,8 +171,6 @@
       .wrap { width: calc(100% - 28px); }
       .nav-links a:nth-child(3) { display: none; }
       h1 { font-size: clamp(3.4rem, 16vw, 5rem); }
-      .about-tech, .learning-tech { opacity: .72; }
-      .hud-ring { top: 66%; right: -36%; transform: scale(.72); }
       .interest-grid { grid-template-columns: 1fr; }
       .interest-icon { margin-bottom: 28px; }
       .numbers { grid-template-columns: 1fr; }
@@ -234,10 +210,6 @@
     </section>
 
     <section class="wrap section" id="about">
-      <div class="about-tech" aria-hidden="true">
-        <div class="hud-ring"><span class="hud-crosshair"></span></div>
-        <div class="scan-line"></div>
-      </div>
       <div class="section-intro">
         <div><p class="label">01 / About me</p><h2>Curious by nature.<br>Builder by choice.</h2></div>
         <p>I’m curious about how the world works—and even more interested in what I can build from that curiosity. Engineering, code, game design, space, and math give me different ways to ask better questions, solve challenging problems, and turn ideas into something people can actually experience.</p>
@@ -274,58 +246,6 @@
     </section>
 
     <section class="wrap section" id="learning">
-      <div class="learning-tech" aria-hidden="true">
-        <span class="equation eq-1">E = mc²</span>
-        <span class="equation eq-2">a² + b² = c²</span>
-        <span class="equation eq-3">F = ma</span>
-        <span class="equation eq-4">∫ f(x) dx</span>
-        <span class="equation eq-5">Δx · Δp ≥ ℏ / 2</span>
-        <span class="equation eq-6">v = d / t</span>
-        <span class="equation eq-7">A = πr²</span>
-        <span class="equation eq-8">∑ n = n(n + 1) / 2</span>
-        <span class="equation eq-9">s = ut + ½at²</span>
-        <span class="equation eq-10">PV = nRT</span>
-        <span class="equation eq-11">x = (−b ± √Δ) / 2a</span>
-        <span class="equation eq-12">∇ · E = ρ / ε₀</span>
-        <span class="equation eq-13">φ = (1 + √5) / 2</span>
-        <span class="equation eq-14">log(ab) = log a + log b</span>
-        <span class="equation eq-15">C = 2πr</span>
-        <span class="equation eq-16">lim f(x) → L</span>
-        <span class="equation eq-17">y = mx + b</span>
-        <span class="equation eq-18">a² − b² = (a − b)(a + b)</span>
-        <span class="equation eq-19">sin²θ + cos²θ = 1</span>
-        <span class="equation eq-20">tan θ = sin θ / cos θ</span>
-        <span class="equation eq-21">d = √((x₂−x₁)² + (y₂−y₁)²)</span>
-        <span class="equation eq-22">m = Δy / Δx</span>
-        <span class="equation eq-23">V = πr²h</span>
-        <span class="equation eq-24">SA = 2πr² + 2πrh</span>
-        <span class="equation eq-25">P(A) = favorable / total</span>
-        <span class="equation eq-26">n! = n(n−1)!</span>
-        <span class="equation eq-27">aₙ = a₁ + (n−1)d</span>
-        <span class="equation eq-28">Sₙ = n(a₁ + aₙ) / 2</span>
-        <span class="equation eq-29">2ⁿ = 2 × 2ⁿ⁻¹</span>
-        <span class="equation eq-30">eⁱᵠ = cosφ + i sinφ</span>
-        <span class="equation eq-31">∫₀¹ x² dx = 1/3</span>
-        <span class="equation eq-32">d/dx(sin x) = cos x</span>
-        <span class="equation eq-33">∇²φ = 0</span>
-        <span class="equation eq-34">Δ = b² − 4ac</span>
-        <span class="equation eq-35">x̄ = Σx / n</span>
-        <span class="equation eq-36">σ² = Σ(x − μ)² / N</span>
-        <span class="equation eq-37">I = V / R</span>
-        <span class="equation eq-38">P = IV</span>
-        <span class="equation eq-39">Q = It</span>
-        <span class="equation eq-40">W = Fd cosθ</span>
-        <span class="equation eq-41">p = mv</span>
-        <span class="equation eq-42">KE = ½mv²</span>
-        <span class="equation eq-43">PE = mgh</span>
-        <span class="equation eq-44">λ = h / p</span>
-        <span class="equation eq-45">f = 1 / T</span>
-        <span class="equation eq-46">v = fλ</span>
-        <span class="equation eq-47">ρ = m / V</span>
-        <span class="equation eq-48">T = 2π√(L / g)</span>
-        <span class="equation eq-49">M = m₁m₂ / r²</span>
-        <span class="equation eq-50">c = 3 × 10⁸ m/s</span>
-      </div>
       <div class="section-intro">
         <div><p class="label">04 / In the lab</p><h2>Always something<br>new to explore.</h2></div>
         <p>The best part of building is that there is always another skill, tool, or idea waiting to be discovered.</p>
@@ -372,35 +292,6 @@
       themeToggle.setAttribute("aria-pressed", String(isLight));
     }
     updateThemeButton();
-    const equations = document.querySelectorAll(".equation");
-    const isSmallScreen = window.innerWidth < 700;
-    const columns = isSmallScreen ? 3 : 5;
-    const rows = Math.ceil(equations.length / columns);
-    const slots = Array.from({ length: equations.length }, (_, index) => [
-      ((index % columns) + .5) * (100 / columns),
-      6 + ((Math.floor(index / columns) + .5) * (88 / rows))
-    ]).sort(() => Math.random() - .5);
-    equations.forEach((equation, index) => {
-      const slot = slots[index % slots.length];
-      const x = slot[0] + (Math.random() * 4 - 2);
-      const y = slot[1] + (Math.random() * 4 - 2);
-      const size = (isSmallScreen ? .5 : .58) + Math.random() * (isSmallScreen ? .28 : .55);
-      equation.style.setProperty("--eq-x", `${x}%`);
-      equation.style.setProperty("--eq-y", `${y}%`);
-      equation.style.setProperty("--eq-size", `${size}rem`);
-      equation.style.setProperty("--eq-delay", `${-Math.random() * 10}s`);
-      equation.style.setProperty("--eq-tilt", `${Math.random() * 10 - 5}deg`);
-      const palette = [
-        ["rgb(144 196 255 / 78%)", "rgb(76 157 255 / 28%)"],
-        ["rgb(255 178 190 / 78%)", "rgb(255 92 105 / 24%)"],
-        ["rgb(218 196 255 / 76%)", "rgb(157 111 255 / 24%)"],
-        ["rgb(255 215 169 / 76%)", "rgb(255 170 72 / 23%)"],
-        ["rgb(167 234 224 / 72%)", "rgb(56 205 183 / 20%)"]
-      ][Math.floor(Math.random() * 5)];
-      equation.style.setProperty("--eq-color", palette[0]);
-      equation.style.setProperty("--eq-glow", palette[1]);
-      equation.style.setProperty("--eq-opacity", `${.55 + Math.random() * .3}`);
-    });
     themeToggle.addEventListener("click", () => {
       const isLight = document.documentElement.dataset.theme === "light";
       document.documentElement.dataset.theme = isLight ? "dark" : "light";
