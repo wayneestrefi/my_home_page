@@ -81,12 +81,12 @@
     .eq-2, .eq-5 { color: rgb(255 178 190 / 74%); }
     .eq-4, .eq-7 { color: rgb(255 210 171 / 70%); }
     .eq-6, .eq-8 { color: rgb(210 189 255 / 72%); }
-    .hud-ring { position: absolute; top: 19%; right: 13%; width: clamp(150px, 20vw, 270px); aspect-ratio: 1; border: 1px solid rgb(76 157 255 / 48%); border-radius: 50%; box-shadow: 0 0 0 18px rgb(76 157 255 / 6%), 0 0 0 42px rgb(76 157 255 / 3%), inset 0 0 40px rgb(76 157 255 / 8%); animation: hud-pulse 7s ease-in-out infinite; }
+    .hud-ring { position: absolute; top: 54%; right: 1%; width: clamp(150px, 20vw, 270px); aspect-ratio: 1; border: 1px solid rgb(76 157 255 / 48%); border-radius: 50%; box-shadow: 0 0 0 18px rgb(76 157 255 / 6%), 0 0 0 42px rgb(76 157 255 / 3%), inset 0 0 40px rgb(76 157 255 / 8%); animation: hud-pulse 7s ease-in-out infinite; }
     .hud-ring::before, .hud-ring::after { position: absolute; inset: 12%; border: 1px solid rgb(255 255 255 / 17%); border-radius: 50%; content: ""; }
     .hud-ring::after { inset: -15%; border-color: transparent rgb(255 92 105 / 48%) transparent transparent; transform: rotate(32deg); }
     .hud-crosshair { position: absolute; top: 50%; left: -16%; width: 132%; height: 1px; background: linear-gradient(90deg, transparent, rgb(76 157 255 / 48%) 22%, rgb(76 157 255 / 48%) 78%, transparent); }
     .hud-crosshair::after { position: absolute; top: -65px; left: 50%; width: 1px; height: 130px; background: linear-gradient(transparent, rgb(76 157 255 / 40%) 25%, rgb(76 157 255 / 40%) 75%, transparent); content: ""; }
-    .scan-line { position: absolute; top: -5%; left: 66%; width: 1px; height: 110%; background: linear-gradient(transparent, rgb(76 157 255 / 16%), transparent); transform: rotate(23deg); transform-origin: center; animation: scan 9s ease-in-out infinite; }
+    .scan-line { position: absolute; top: 5%; left: 82%; width: 1px; height: 90%; background: linear-gradient(transparent, rgb(76 157 255 / 16%), transparent); transform: rotate(23deg); transform-origin: center; animation: scan 9s ease-in-out infinite; }
     @keyframes equation-drift { from { transform: translate3d(-5px, 4px, 0) rotate(-2deg); } to { transform: translate3d(8px, -8px, 0) rotate(2deg); } }
     @keyframes hud-pulse { 50% { transform: scale(1.04) rotate(5deg); opacity: .76; } }
     @keyframes scan { 50% { transform: rotate(23deg) translateX(90px); opacity: .9; } }
@@ -173,7 +173,7 @@
       .nav-links { gap: 14px; font-size: 11px; }
       .date { display: none; }
       .hero { min-height: auto; padding: 100px 0 110px; }
-      .hud-ring { right: -5%; top: 14%; }
+      .hud-ring { right: -30%; top: 58%; }
       .equation { opacity: .7; }
       .section { padding: 80px 0; }
       .section-intro, .about-grid { grid-template-columns: 1fr; gap: 24px; }
@@ -191,7 +191,7 @@
       .nav-links a:nth-child(3) { display: none; }
       h1 { font-size: clamp(3.4rem, 16vw, 5rem); }
       .hero-tech { opacity: .72; }
-      .hud-ring { top: 10%; right: -26%; transform: scale(.72); }
+      .hud-ring { top: 66%; right: -36%; transform: scale(.72); }
       .interest-grid { grid-template-columns: 1fr; }
       .interest-icon { margin-bottom: 28px; }
       .numbers { grid-template-columns: 1fr; }
@@ -328,8 +328,8 @@
     const equations = document.querySelectorAll(".equation");
     const isSmallScreen = window.innerWidth < 700;
     equations.forEach((equation) => {
-      const x = isSmallScreen ? 8 + Math.random() * 78 : 54 + Math.random() * 38;
-      const y = isSmallScreen ? 58 + Math.random() * 30 : 8 + Math.random() * 82;
+      const x = isSmallScreen ? 18 + Math.random() * 70 : 78 + Math.random() * 18;
+      const y = isSmallScreen ? 62 + Math.random() * 26 : 8 + Math.random() * 82;
       const size = (isSmallScreen ? .72 : .82) + Math.random() * (isSmallScreen ? .42 : .9);
       equation.style.setProperty("--eq-x", `${x}%`);
       equation.style.setProperty("--eq-y", `${y}%`);
