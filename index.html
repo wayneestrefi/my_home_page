@@ -282,6 +282,14 @@
         <span class="equation eq-6">v = d / t</span>
         <span class="equation eq-7">A = πr²</span>
         <span class="equation eq-8">∑ n = n(n + 1) / 2</span>
+        <span class="equation eq-9">s = ut + ½at²</span>
+        <span class="equation eq-10">PV = nRT</span>
+        <span class="equation eq-11">x = (−b ± √Δ) / 2a</span>
+        <span class="equation eq-12">∇ · E = ρ / ε₀</span>
+        <span class="equation eq-13">φ = (1 + √5) / 2</span>
+        <span class="equation eq-14">log(ab) = log a + log b</span>
+        <span class="equation eq-15">C = 2πr</span>
+        <span class="equation eq-16">lim f(x) → L</span>
       </div>
       <div class="section-intro">
         <div><p class="label">04 / In the lab</p><h2>Always something<br>new to explore.</h2></div>
@@ -331,9 +339,13 @@
     updateThemeButton();
     const equations = document.querySelectorAll(".equation");
     const isSmallScreen = window.innerWidth < 700;
-    equations.forEach((equation) => {
-      const x = isSmallScreen ? 18 + Math.random() * 70 : 78 + Math.random() * 18;
-      const y = isSmallScreen ? 62 + Math.random() * 26 : 8 + Math.random() * 82;
+    const desktopSlots = [[7, 10], [27, 11], [49, 9], [72, 12], [89, 10], [16, 38], [38, 36], [61, 39], [84, 37], [9, 68], [30, 72], [53, 68], [76, 71], [92, 67], [21, 91], [67, 91]];
+    const mobileSlots = [[8, 64], [48, 64], [78, 64], [22, 78], [62, 78], [10, 92], [49, 92], [82, 91]];
+    const slots = (isSmallScreen ? mobileSlots : desktopSlots).sort(() => Math.random() - .5);
+    equations.forEach((equation, index) => {
+      const slot = slots[index % slots.length];
+      const x = slot[0] + (Math.random() * 6 - 3);
+      const y = slot[1] + (Math.random() * 6 - 3);
       const size = (isSmallScreen ? .72 : .82) + Math.random() * (isSmallScreen ? .42 : .9);
       equation.style.setProperty("--eq-x", `${x}%`);
       equation.style.setProperty("--eq-y", `${y}%`);
