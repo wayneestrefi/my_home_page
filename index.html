@@ -78,7 +78,7 @@
     .section > :not(.about-tech):not(.learning-tech) { position: relative; z-index: 1; }
     .about-tech { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
     .learning-tech { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
-    .equation { position: absolute; top: var(--eq-y); left: var(--eq-x); color: rgb(164 201 255 / 76%); font-family: Georgia, "Times New Roman", serif; font-style: italic; font-size: var(--eq-size); letter-spacing: .02em; text-shadow: 0 0 18px rgb(76 157 255 / 38%); white-space: nowrap; animation: equation-drift 12s ease-in-out infinite alternate; animation-delay: var(--eq-delay); }
+    .equation { position: absolute; top: var(--eq-y); left: var(--eq-x); color: var(--eq-color, rgb(164 201 255 / 76%)); font-family: Georgia, "Times New Roman", serif; font-style: italic; font-size: var(--eq-size); letter-spacing: .02em; opacity: var(--eq-opacity, .72); text-shadow: 0 0 18px var(--eq-glow, rgb(76 157 255 / 30%)); white-space: nowrap; animation: equation-drift 12s ease-in-out infinite alternate; animation-delay: var(--eq-delay); }
     .equation::after { position: absolute; right: -12px; bottom: -7px; left: -10px; height: 1px; background: linear-gradient(90deg, transparent, rgb(76 157 255 / 45%), transparent); content: ""; }
     .eq-2, .eq-5 { color: rgb(255 178 190 / 74%); }
     .eq-4, .eq-7 { color: rgb(255 210 171 / 70%); }
@@ -89,7 +89,7 @@
     .hud-crosshair { position: absolute; top: 50%; left: -16%; width: 132%; height: 1px; background: linear-gradient(90deg, transparent, rgb(76 157 255 / 48%) 22%, rgb(76 157 255 / 48%) 78%, transparent); }
     .hud-crosshair::after { position: absolute; top: -65px; left: 50%; width: 1px; height: 130px; background: linear-gradient(transparent, rgb(76 157 255 / 40%) 25%, rgb(76 157 255 / 40%) 75%, transparent); content: ""; }
     .scan-line { position: absolute; top: 5%; left: 82%; width: 1px; height: 90%; background: linear-gradient(transparent, rgb(76 157 255 / 16%), transparent); transform: rotate(23deg); transform-origin: center; animation: scan 9s ease-in-out infinite; }
-    @keyframes equation-drift { from { transform: translate3d(-5px, 4px, 0) rotate(-2deg); } to { transform: translate3d(8px, -8px, 0) rotate(2deg); } }
+    @keyframes equation-drift { from { transform: translate3d(-5px, 4px, 0) rotate(var(--eq-tilt, -2deg)); } to { transform: translate3d(8px, -8px, 0) rotate(calc(var(--eq-tilt, 2deg) * -1)); } }
     @keyframes hud-pulse { 50% { transform: scale(1.04) rotate(5deg); opacity: .76; } }
     @keyframes scan { 50% { transform: rotate(23deg) translateX(90px); opacity: .9; } }
     [data-theme="light"] .about-tech, [data-theme="light"] .learning-tech { opacity: .36; }
@@ -134,6 +134,7 @@
     .principle p { max-width: 260px; margin: 0; color: var(--muted); font-size: 13px; line-height: 1.5; }
 
     .learning { display: grid; grid-template-columns: minmax(280px, .75fr) minmax(0, 1.25fr); gap: 14px; }
+    #learning { min-height: 980px; }
     .learning-note { min-height: 320px; padding: clamp(26px, 5vw, 46px); background: radial-gradient(circle at 80% 10%, rgb(76 157 255 / 24%), transparent 35%), linear-gradient(145deg, rgba(255,255,255,.1), rgba(255,255,255,.035)); }
     .learning-note h3 { max-width: 300px; margin: 0; font-size: clamp(1.7rem, 3vw, 2.6rem); font-weight: 500; letter-spacing: -.06em; line-height: 1.05; }
     .learning-note p { max-width: 300px; margin: 28px 0 0; color: var(--soft-white); font-size: 14px; line-height: 1.55; }
@@ -373,7 +374,7 @@
     updateThemeButton();
     const equations = document.querySelectorAll(".equation");
     const isSmallScreen = window.innerWidth < 700;
-    const columns = isSmallScreen ? 5 : 10;
+    const columns = isSmallScreen ? 3 : 5;
     const rows = Math.ceil(equations.length / columns);
     const slots = Array.from({ length: equations.length }, (_, index) => [
       ((index % columns) + .5) * (100 / columns),
@@ -388,6 +389,17 @@
       equation.style.setProperty("--eq-y", `${y}%`);
       equation.style.setProperty("--eq-size", `${size}rem`);
       equation.style.setProperty("--eq-delay", `${-Math.random() * 10}s`);
+      equation.style.setProperty("--eq-tilt", `${Math.random() * 10 - 5}deg`);
+      const palette = [
+        ["rgb(144 196 255 / 78%)", "rgb(76 157 255 / 28%)"],
+        ["rgb(255 178 190 / 78%)", "rgb(255 92 105 / 24%)"],
+        ["rgb(218 196 255 / 76%)", "rgb(157 111 255 / 24%)"],
+        ["rgb(255 215 169 / 76%)", "rgb(255 170 72 / 23%)"],
+        ["rgb(167 234 224 / 72%)", "rgb(56 205 183 / 20%)"]
+      ][Math.floor(Math.random() * 5)];
+      equation.style.setProperty("--eq-color", palette[0]);
+      equation.style.setProperty("--eq-glow", palette[1]);
+      equation.style.setProperty("--eq-opacity", `${.55 + Math.random() * .3}`);
     });
     themeToggle.addEventListener("click", () => {
       const isLight = document.documentElement.dataset.theme === "light";
