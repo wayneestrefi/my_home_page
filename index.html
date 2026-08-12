@@ -290,6 +290,40 @@
         <span class="equation eq-14">log(ab) = log a + log b</span>
         <span class="equation eq-15">C = 2πr</span>
         <span class="equation eq-16">lim f(x) → L</span>
+        <span class="equation eq-17">y = mx + b</span>
+        <span class="equation eq-18">a² − b² = (a − b)(a + b)</span>
+        <span class="equation eq-19">sin²θ + cos²θ = 1</span>
+        <span class="equation eq-20">tan θ = sin θ / cos θ</span>
+        <span class="equation eq-21">d = √((x₂−x₁)² + (y₂−y₁)²)</span>
+        <span class="equation eq-22">m = Δy / Δx</span>
+        <span class="equation eq-23">V = πr²h</span>
+        <span class="equation eq-24">SA = 2πr² + 2πrh</span>
+        <span class="equation eq-25">P(A) = favorable / total</span>
+        <span class="equation eq-26">n! = n(n−1)!</span>
+        <span class="equation eq-27">aₙ = a₁ + (n−1)d</span>
+        <span class="equation eq-28">Sₙ = n(a₁ + aₙ) / 2</span>
+        <span class="equation eq-29">2ⁿ = 2 × 2ⁿ⁻¹</span>
+        <span class="equation eq-30">eⁱᵠ = cosφ + i sinφ</span>
+        <span class="equation eq-31">∫₀¹ x² dx = 1/3</span>
+        <span class="equation eq-32">d/dx(sin x) = cos x</span>
+        <span class="equation eq-33">∇²φ = 0</span>
+        <span class="equation eq-34">Δ = b² − 4ac</span>
+        <span class="equation eq-35">x̄ = Σx / n</span>
+        <span class="equation eq-36">σ² = Σ(x − μ)² / N</span>
+        <span class="equation eq-37">I = V / R</span>
+        <span class="equation eq-38">P = IV</span>
+        <span class="equation eq-39">Q = It</span>
+        <span class="equation eq-40">W = Fd cosθ</span>
+        <span class="equation eq-41">p = mv</span>
+        <span class="equation eq-42">KE = ½mv²</span>
+        <span class="equation eq-43">PE = mgh</span>
+        <span class="equation eq-44">λ = h / p</span>
+        <span class="equation eq-45">f = 1 / T</span>
+        <span class="equation eq-46">v = fλ</span>
+        <span class="equation eq-47">ρ = m / V</span>
+        <span class="equation eq-48">T = 2π√(L / g)</span>
+        <span class="equation eq-49">M = m₁m₂ / r²</span>
+        <span class="equation eq-50">c = 3 × 10⁸ m/s</span>
       </div>
       <div class="section-intro">
         <div><p class="label">04 / In the lab</p><h2>Always something<br>new to explore.</h2></div>
@@ -339,14 +373,17 @@
     updateThemeButton();
     const equations = document.querySelectorAll(".equation");
     const isSmallScreen = window.innerWidth < 700;
-    const desktopSlots = [[7, 10], [27, 11], [49, 9], [72, 12], [89, 10], [16, 38], [38, 36], [61, 39], [84, 37], [9, 68], [30, 72], [53, 68], [76, 71], [92, 67], [21, 91], [67, 91]];
-    const mobileSlots = [[8, 64], [48, 64], [78, 64], [22, 78], [62, 78], [10, 92], [49, 92], [82, 91]];
-    const slots = (isSmallScreen ? mobileSlots : desktopSlots).sort(() => Math.random() - .5);
+    const columns = isSmallScreen ? 5 : 10;
+    const rows = Math.ceil(equations.length / columns);
+    const slots = Array.from({ length: equations.length }, (_, index) => [
+      ((index % columns) + .5) * (100 / columns),
+      6 + ((Math.floor(index / columns) + .5) * (88 / rows))
+    ]).sort(() => Math.random() - .5);
     equations.forEach((equation, index) => {
       const slot = slots[index % slots.length];
-      const x = slot[0] + (Math.random() * 6 - 3);
-      const y = slot[1] + (Math.random() * 6 - 3);
-      const size = (isSmallScreen ? .72 : .82) + Math.random() * (isSmallScreen ? .42 : .9);
+      const x = slot[0] + (Math.random() * 4 - 2);
+      const y = slot[1] + (Math.random() * 4 - 2);
+      const size = (isSmallScreen ? .5 : .58) + Math.random() * (isSmallScreen ? .28 : .55);
       equation.style.setProperty("--eq-x", `${x}%`);
       equation.style.setProperty("--eq-y", `${y}%`);
       equation.style.setProperty("--eq-size", `${size}rem`);
