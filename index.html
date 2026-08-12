@@ -75,8 +75,9 @@
     [data-theme="light"] .hero::before { opacity: .16; filter: saturate(.4) brightness(1.35) contrast(.8); }
     [data-theme="light"] .hero::after { background: linear-gradient(90deg, rgb(238 242 247 / 82%), rgb(238 242 247 / 42%) 52%, rgb(238 242 247 / 18%)), linear-gradient(180deg, transparent 72%, rgb(238 242 247 / 58%) 100%); }
     .section { position: relative; }
-    .section > :not(.about-tech) { position: relative; z-index: 1; }
+    .section > :not(.about-tech):not(.learning-tech) { position: relative; z-index: 1; }
     .about-tech { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+    .learning-tech { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
     .equation { position: absolute; top: var(--eq-y); left: var(--eq-x); color: rgb(164 201 255 / 76%); font-family: Georgia, "Times New Roman", serif; font-style: italic; font-size: var(--eq-size); letter-spacing: .02em; text-shadow: 0 0 18px rgb(76 157 255 / 38%); white-space: nowrap; animation: equation-drift 12s ease-in-out infinite alternate; animation-delay: var(--eq-delay); }
     .equation::after { position: absolute; right: -12px; bottom: -7px; left: -10px; height: 1px; background: linear-gradient(90deg, transparent, rgb(76 157 255 / 45%), transparent); content: ""; }
     .eq-2, .eq-5 { color: rgb(255 178 190 / 74%); }
@@ -91,7 +92,7 @@
     @keyframes equation-drift { from { transform: translate3d(-5px, 4px, 0) rotate(-2deg); } to { transform: translate3d(8px, -8px, 0) rotate(2deg); } }
     @keyframes hud-pulse { 50% { transform: scale(1.04) rotate(5deg); opacity: .76; } }
     @keyframes scan { 50% { transform: rotate(23deg) translateX(90px); opacity: .9; } }
-    [data-theme="light"] .about-tech { opacity: .36; }
+    [data-theme="light"] .about-tech, [data-theme="light"] .learning-tech { opacity: .36; }
     .kicker { margin: 0 0 24px; color: var(--red); font-size: 12px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; }
     h1, h2, h3, p { margin-top: 0; }
     h1 { max-width: 850px; margin-bottom: 30px; font-size: clamp(3.5rem, 7.8vw, 6.8rem); font-weight: 600; letter-spacing: -.075em; line-height: .9; }
@@ -191,7 +192,7 @@
       .wrap { width: calc(100% - 28px); }
       .nav-links a:nth-child(3) { display: none; }
       h1 { font-size: clamp(3.4rem, 16vw, 5rem); }
-      .about-tech { opacity: .72; }
+      .about-tech, .learning-tech { opacity: .72; }
       .hud-ring { top: 66%; right: -36%; transform: scale(.72); }
       .interest-grid { grid-template-columns: 1fr; }
       .interest-icon { margin-bottom: 28px; }
@@ -233,14 +234,6 @@
 
     <section class="wrap section" id="about">
       <div class="about-tech" aria-hidden="true">
-        <span class="equation eq-1">E = mc²</span>
-        <span class="equation eq-2">a² + b² = c²</span>
-        <span class="equation eq-3">F = ma</span>
-        <span class="equation eq-4">∫ f(x) dx</span>
-        <span class="equation eq-5">Δx · Δp ≥ ℏ / 2</span>
-        <span class="equation eq-6">v = d / t</span>
-        <span class="equation eq-7">A = πr²</span>
-        <span class="equation eq-8">∑ n = n(n + 1) / 2</span>
         <div class="hud-ring"><span class="hud-crosshair"></span></div>
         <div class="scan-line"></div>
       </div>
@@ -280,6 +273,16 @@
     </section>
 
     <section class="wrap section" id="learning">
+      <div class="learning-tech" aria-hidden="true">
+        <span class="equation eq-1">E = mc²</span>
+        <span class="equation eq-2">a² + b² = c²</span>
+        <span class="equation eq-3">F = ma</span>
+        <span class="equation eq-4">∫ f(x) dx</span>
+        <span class="equation eq-5">Δx · Δp ≥ ℏ / 2</span>
+        <span class="equation eq-6">v = d / t</span>
+        <span class="equation eq-7">A = πr²</span>
+        <span class="equation eq-8">∑ n = n(n + 1) / 2</span>
+      </div>
       <div class="section-intro">
         <div><p class="label">04 / In the lab</p><h2>Always something<br>new to explore.</h2></div>
         <p>The best part of building is that there is always another skill, tool, or idea waiting to be discovered.</p>
