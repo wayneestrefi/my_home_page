@@ -9,17 +9,17 @@
   <style>
     :root {
       color-scheme: dark;
-      --white: #f1f5d5;
-      --soft-white: #c9d59e;
-      --muted: #82905b;
-      --ink: #0b100b;
-      --panel: rgba(169, 190, 66, .075);
-      --line: rgba(189, 209, 94, .18);
-      --red: #d95c3d;
-      --blue: #9fb83b;
+      --white: #f4f7fb;
+      --soft-white: #cbd4e0;
+      --muted: #8491a2;
+      --ink: #0b0d10;
+      --panel: rgba(205, 220, 239, .065);
+      --line: rgba(205, 220, 239, .15);
+      --red: #ff3e4d;
+      --blue: #4c9dff;
       --max: 1240px;
     }
-    [data-theme="light"] { --white: #253016; --soft-white: #4e5b2e; --muted: #778452; --ink: #edf1d8; --panel: rgba(255,255,255,.68); --line: rgba(60,82,25,.18); --red: #b64d32; --blue: #718b25; }
+    [data-theme="light"] { --white: #17202b; --soft-white: #344252; --muted: #68798d; --ink: #eef2f7; --panel: rgba(255,255,255,.68); --line: rgba(23,42,62,.16); --red: #d92f3d; --blue: #2674d8; }
 
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
@@ -37,7 +37,7 @@
       position: fixed;
       inset: 0;
       z-index: -2;
-      background: radial-gradient(ellipse at 50% -15%, #263719 0%, transparent 52%), var(--ink);
+      background: radial-gradient(ellipse at 50% -15%, #152945 0%, transparent 52%), var(--ink);
       content: "";
     }
 
@@ -81,9 +81,9 @@
     .hero-copy { max-width: 580px; color: var(--soft-white); font-size: clamp(1.1rem, 2vw, 1.35rem); line-height: 1.55; }
     .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
     .button { display: inline-flex; min-height: 48px; align-items: center; justify-content: center; padding: 0 21px; border: 1px solid var(--line); border-radius: 999px; background: rgba(255,255,255,.08); font-size: 13px; font-weight: 650; transition: background .25s ease, border-color .25s ease, transform .25s ease; }
-    .button:hover { border-color: rgb(159 184 59 / 72%); background: rgb(159 184 59 / 16%); transform: translateY(-2px); }
+    .button:hover { border-color: rgb(76 157 255 / 65%); background: rgb(76 157 255 / 14%); transform: translateY(-2px); }
     .button.primary { border-color: transparent; background: var(--white); color: #111216; }
-    .button.primary:hover { background: #d4e68a; }
+    .button.primary:hover { background: #a9caff; }
 
     .section { padding: 108px 0; border-top: 1px solid var(--line); }
     .section-intro { display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(280px, .92fr); gap: 72px; align-items: end; margin-bottom: 44px; }
@@ -103,7 +103,7 @@
 
     .interest-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
     .interest { min-height: 220px; padding: 24px; transition: transform .25s ease, border-color .25s ease; }
-    .interest:hover { border-color: rgb(159 184 59 / 72%); transform: translateY(-5px); }
+    .interest:hover { border-color: rgb(76 157 255 / 65%); transform: translateY(-5px); }
     .interest-icon { display: block; margin-bottom: 55px; color: var(--blue); font-size: 23px; }
     .interest h3 { min-height: 44px; margin-bottom: 8px; font-size: 18px; font-weight: 500; line-height: 1.2; }
     .interest p { margin-bottom: 0; color: var(--muted); font-size: 13px; line-height: 1.4; }
@@ -115,7 +115,7 @@
     .principle p { max-width: 260px; margin: 0; color: var(--muted); font-size: 13px; line-height: 1.5; }
 
     .learning { display: grid; grid-template-columns: minmax(280px, .75fr) minmax(0, 1.25fr); gap: 14px; }
-    .learning-note { min-height: 320px; padding: clamp(26px, 5vw, 46px); background: radial-gradient(circle at 80% 10%, rgb(159 184 59 / 28%), transparent 35%), linear-gradient(145deg, rgba(178,201,75,.12), rgba(255,255,255,.035)); }
+    .learning-note { min-height: 320px; padding: clamp(26px, 5vw, 46px); background: radial-gradient(circle at 80% 10%, rgb(76 157 255 / 24%), transparent 35%), linear-gradient(145deg, rgba(255,255,255,.1), rgba(255,255,255,.035)); }
     .learning-note h3 { max-width: 300px; margin: 0; font-size: clamp(1.7rem, 3vw, 2.6rem); font-weight: 500; letter-spacing: -.06em; line-height: 1.05; }
     .learning-note p { max-width: 300px; margin: 28px 0 0; color: var(--soft-white); font-size: 14px; line-height: 1.55; }
     .roadmap { display: flex; flex-direction: column; padding: 28px; }
@@ -129,7 +129,7 @@
     .projects { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
     .project { min-height: 330px; display: flex; flex-direction: column; justify-content: space-between; padding: 24px; overflow: hidden; transition: transform .3s ease, border-color .3s ease; }
     .project:hover { border-color: rgb(255 62 77 / 70%); transform: translateY(-6px); }
-    .project-featured { background: radial-gradient(circle at 80% 20%, rgb(159 184 59 / 30%), transparent 30%), linear-gradient(145deg, rgb(39 75 32 / 55%), rgba(255,255,255,.04)); }
+    .project-featured { background: radial-gradient(circle at 80% 20%, rgb(255 62 77 / 24%), transparent 30%), linear-gradient(145deg, rgb(20 50 90 / 45%), rgba(255,255,255,.04)); }
     .project-top, .project-bottom { display: flex; align-items: center; justify-content: space-between; }
     .project-tag, .project-year { color: var(--soft-white); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; }
     .project h3 { margin: 0; font-size: clamp(1.7rem, 3vw, 2.5rem); font-weight: 500; letter-spacing: -.06em; }
@@ -147,7 +147,7 @@
     .footer h2 { max-width: 700px; }
     .socials { display: flex; flex-wrap: wrap; gap: 9px; justify-content: end; }
     .social { padding: 12px 15px; border: 1px solid var(--line); border-radius: 100px; color: var(--soft-white); font-size: 12px; transition: color .2s ease, border-color .2s ease, background .2s ease; }
-    .social:hover { border-color: var(--blue); background: rgb(159 184 59 / 16%); color: var(--white); }
+    .social:hover { border-color: var(--blue); background: rgb(76 157 255 / 13%); color: var(--white); }
     .footer-bottom { display: flex; justify-content: space-between; padding-top: 22px; border-top: 1px solid var(--line); color: var(--muted); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
 
     @media (max-width: 800px) {
